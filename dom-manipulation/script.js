@@ -35,7 +35,7 @@ function showRandomQuote() {
 }
 
 // Function to add a new quote
-function CreateAddQuoteForm() {
+function createAddQuoteForm() {
     let newText = document.getElementById("newQuoteText").value.trim();
     let newCategory = document.getElementById("newQuoteCategory").value.trim();
 
