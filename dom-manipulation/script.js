@@ -8,11 +8,11 @@ let quotes = [
 // Function to display a random quote
 function showRandomQuote() {
     if (quotes.length === 0) {
-        document.getElementById("quoteDisplay").innerText = "No quotes available!";
+        document.getElementById("quoteDisplay").innerHTML = "No quotes available!";
         return;
     }
     let randomIndex = Math.floor(Math.random() * quotes.length);
-    document.getElementById("quoteDisplay").innerText = `"${quotes[randomIndex].text}" - ${quotes[randomIndex].category}`;
+    document.getElementById("quoteDisplay").innerHTML = `"${quotes[randomIndex].text}" - ${quotes[randomIndex].category}`;
 }
 
 // Function to add a new quote
