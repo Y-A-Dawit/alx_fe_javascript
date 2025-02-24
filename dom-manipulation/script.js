@@ -11,12 +11,31 @@ function showRandomQuote() {
         document.getElementById("quoteDisplay").innerHTML = "No quotes available!";
         return;
     }
+
     let randomIndex = Math.floor(Math.random() * quotes.length);
-    document.getElementById("quoteDisplay").innerHTML = `"${quotes[randomIndex].text}" - ${quotes[randomIndex].category}`;
+    let quoteObj = quotes[randomIndex];
+
+    // Create a new div for the quote
+    let quoteContainer = document.createElement("div");
+    quoteContainer.classList.add("quote-container");
+
+    let quoteText = document.createElement("p");
+    quoteText.innerHTML = `"${quoteObj.text}"`;
+
+    let quoteCategory = document.createElement("span");
+    quoteCategory.innerHTML = ` - ${quoteObj.category}`;
+    quoteCategory.style.fontWeight = "bold";
+
+    // Clear existing content and add the new elements
+    let quoteDisplay = document.getElementById("quoteDisplay");
+    quoteDisplay.innerHTML = ""; // Clear previous content
+    quoteContainer.appendChild(quoteText);
+    quoteContainer.appendChild(quoteCategory);
+    quoteDisplay.appendChild(quoteContainer);
 }
 
 // Function to add a new quote
-function createAddQuoteForm() {
+function CreateAddQuoteForm() {
     let newText = document.getElementById("newQuoteText").value.trim();
     let newCategory = document.getElementById("newQuoteCategory").value.trim();
 
@@ -25,8 +44,16 @@ function createAddQuoteForm() {
         return;
     }
 
-    // Add new quote to the array
-    quotes.push({ text: newText, category: newCategory });
+    // Create a new quote object and add to array
+    let newQuoteObj = { text: newText, category: newCategory };
+    quotes.push(newQuoteObj);
+
+    // Create a new list item for the added quote
+    let quoteItem = document.createElement("li");
+    quoteItem.innerHTML = `"${newText}" - <strong>${newCategory}</strong>`;
+
+    // Append the new quote to the display
+    document.getElementById("quoteList").appendChild(quoteItem);
 
     // Clear input fields
     document.getElementById("newQuoteText").value = "";
