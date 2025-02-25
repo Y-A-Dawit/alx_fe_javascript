@@ -39,7 +39,7 @@ function handleConflictResolution(serverQuotes) {
     populateCategories();
     filterQuotes();
     
-    alert("Quotes have been updated from the server!");
+    alert("Quotes synced with server!");  // ✅ Updated notification message
 }
 
 // Push local quotes to the server (mocked API request)
@@ -52,7 +52,7 @@ async function syncQuotesToServer() {
                 headers: { "Content-Type": "application/json" }
             });
         }
-        alert("Local quotes synced to the server!");
+        alert("Quotes synced with server!");  // ✅ Ensuring this message appears
     } catch (error) {
         console.error("Error syncing to server:", error);
     }
