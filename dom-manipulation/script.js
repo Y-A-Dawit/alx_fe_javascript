@@ -10,6 +10,19 @@ function saveQuotes() {
     localStorage.setItem("quotes", JSON.stringify(quotes));
 }
 
+// Function to display a random quote
+function showRandomQuote() {
+    if (quotes.length === 0) {
+        document.getElementById("quoteDisplay").textContent = "No quotes available.";
+        return;
+    }
+
+    let randomIndex = Math.floor(Math.random() * quotes.length);
+    let randomQuote = quotes[randomIndex];
+
+    document.getElementById("quoteDisplay").innerHTML = `"${randomQuote.text}" - <strong>${randomQuote.category}</strong>`;
+}
+
 // Function to populate the category dropdown dynamically
 function populateCategories() {
     let categoryDropdown = document.getElementById("categoryFilter");
@@ -123,6 +136,7 @@ function importFromJsonFile(event) {
 // Load quotes and categories when page loads
 document.addEventListener("DOMContentLoaded", () => {
     populateCategories();
+    showRandomQuote();
     document.getElementById("newQuote").addEventListener("click", showRandomQuote);
     document.getElementById("addQuoteButton").addEventListener("click", addQuote);
     document.getElementById("exportButton").addEventListener("click", exportToJsonFile);
